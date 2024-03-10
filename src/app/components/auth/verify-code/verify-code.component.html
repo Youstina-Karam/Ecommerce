@@ -1,0 +1,38 @@
+<section class="bg-main-light my-2 p-4 rounded w-50 mx-auto">
+    <h1 class="fs-3 py-2">reset your account password</h1>
+    <form [formGroup]="verifyForm" (ngSubmit)="sendCode()">
+      <div class="mb-2">
+        <label for="resetCode">resetCode :</label>
+        <input
+          type="text"
+          id="resetCode"
+          class="form-control"
+          formControlName="resetCode"
+          maxlength="6"
+        />
+        <div
+          class="text-danger"
+          *ngIf="
+            verifyForm.get('resetCode')?.errors &&
+            verifyForm.get('resetCode')?.touched
+          "
+        >
+          <p *ngIf="verifyForm.get('resetCode')?.getError('required')">
+            reset code is required
+          </p>
+          <p *ngIf="verifyForm.get('resetCode')?.getError('pattern')">
+           reset code only number
+          </p>
+        </div>
+      </div>
+  
+      <button
+        type="submit"
+        class="btn btn-outline-success"
+        [disabled]="!verifyForm.valid"
+      >
+        <i class="fas fa-spinner fa-spin" *ngIf="isLoading"></i> Verify
+      </button>
+      <p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>
+    </form>
+  </section>

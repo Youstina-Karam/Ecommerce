@@ -1,0 +1,62 @@
+<section class="w-75 mx-auto my-3 bg-main-light p-3 rounded">
+  <div class="d-flex justify-content-between align-items-center">
+    <h1 class="py-4">Shop Cart</h1>
+    <button class="btn-main my-3" *ngIf="cartProduct.products.length !== 0" [routerLink]="['/checkout', cartProduct._id]">
+      Check Out
+    </button>
+  </div>
+  <div *ngIf="cartProduct.products.length == 0 || errorMsg">
+    <p class="alert alert-info">
+      <i class="fa-solid fa-circle-exclamation text-warning px-2 my-2"></i> 
+     No items added in your cart.
+    </p>
+    <button class="btn" routerLink="/home">
+      Back to home <i class="fa-solid fa-chevron-right px-2"></i>
+    </button>
+  </div>
+  <div *ngIf="cartProduct.products.length !== 0">
+    <div  class="d-flex justify-content-between align-items-center">
+      <p> Total price : <span class="text-main"> {{ cartProduct.totalCartPrice | currency : " EGP " }}</span></p>
+      <p> Total number of items:<span class="text-main"> {{totalItems}}</span></p>
+    </div>
+   
+
+    <div
+      class="row border-bottom py-2"
+      *ngFor="let item of cartProduct.products"
+    >
+      <div class="col-md-2">
+        <img [src]="item.product.imageCover" alt="..." class="w-100" />
+      </div>
+      <div class="col-md-10 d-flex justify-content-between align-items-center">
+        <div>
+          <h4>{{ item.product.title | termText:2 }}</h4>
+          <p class="text-main m-0">price: {{ item.price }}</p>
+          <button class="btn text-danger p-0" (click)="removeCartItem(item.product._id)">
+            <i class="fa-regular fa-trash-can pe-2"></i>Remove
+          </button>
+        </div>
+        <div>
+          <button
+            (click)="changeCount(item.product._id, item.count + 1)"
+            class="btn border border-success"
+          >
+            +
+          </button>
+          <span class="p-2">{{ item.count }}</span>
+          <button
+            (click)="changeCount(item.product._id, item.count - 1)"
+            class="btn border border-success"
+          >
+            -
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-outline-success my-2 mx-auto d-block" (click)="clearCart()">Clear your cart</button>
+   
+  </div>
+</section>
+
+

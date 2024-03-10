@@ -1,0 +1,215 @@
+<section class="bg-main-light my-2 p-4 rounded w-50 mx-auto">
+  <h1 class="text-center">Update Profile</h1>
+
+  <form [formGroup]="updateProfileForm" (ngSubmit)="updateProfile()">
+    <div class="mb-2">
+      <label for="name">name :</label>
+      <input
+        type="text"
+        id="name"
+        class="form-control"
+        formControlName="name"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          updateProfileForm.get('name')?.errors &&
+          updateProfileForm.get('name')?.touched
+        "
+      >
+        <p *ngIf="updateProfileForm.get('name')?.getError('required')">
+          name is required
+        </p>
+        <p *ngIf="updateProfileForm.get('name')?.getError('minlength')">
+          must be at least 3 chars
+        </p>
+        <p *ngIf="updateProfileForm.get('name')?.getError('maxlength')">
+          must be at max 10 chars
+        </p>
+      </div>
+    </div>
+    <div class="mb-2">
+      <label for="email">email :</label>
+      <input
+        type="email"
+        id="email"
+        class="form-control"
+        formControlName="email"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          updateProfileForm.get('email')?.errors &&
+          updateProfileForm.get('email')?.touched
+        "
+      >
+        <p *ngIf="updateProfileForm.get('email')?.getError('required')">
+          email is required
+        </p>
+        <p *ngIf="updateProfileForm.get('email')?.getError('email')">
+          email is invalid
+        </p>
+      </div>
+    </div>
+    <div class="mb-2">
+      <label for="phone">phone :</label>
+      <input
+        type="tel"
+        id="phone"
+        class="form-control"
+        formControlName="phone"
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          updateProfileForm.get('phone')?.errors &&
+          (updateProfileForm.get('phone')?.touched ||
+            updateProfileForm.get('phone')?.dirty)
+        "
+      >
+        <p *ngIf="updateProfileForm.get('phone')?.getError('required')">
+          phone is required
+        </p>
+        <p *ngIf="updateProfileForm.get('phone')?.getError('pattern')">
+          accept only egypt phone numbers
+        </p>
+      </div>
+    </div>
+
+    <button
+      class="btn-main mx-auto d-block"
+      [disabled]="!updateProfileForm.valid"
+    >
+      <i class="fas fa-spinner fa-spin" *ngIf="isLoading"></i> Update
+    </button>
+
+    <p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>
+  </form>
+  <div class="accordion my-4" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button
+          class="accordion-button"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseOne"
+          aria-expanded="true"
+          aria-controls="collapseOne"
+        >
+          <i class="fa-solid fa-circle-exclamation px-2 text-warning"></i>
+          Update your password
+        </button>
+      </h2>
+      <div
+        id="collapseOne"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingOne"
+        data-bs-parent="#accordionExample"
+      >
+        <div class="accordion-body">
+          <form [formGroup]="updatePasswordForm" (ngSubmit)="updatePassword()">
+            <div class="mb-2">
+              <label for="currentPassword">Current Password:</label>
+              <input
+                type="password"
+                id="currentPassword"
+                class="form-control"
+                formControlName="currentPassword"
+              />
+              <div
+                class="text-danger"
+                *ngIf="
+                  updatePasswordForm.get('currentPassword')?.errors &&
+                  updatePasswordForm.get('currentPassword')?.touched
+                "
+              >
+                <p
+                  *ngIf="
+                    updatePasswordForm
+                      .get('currentPassword')
+                      ?.getError('required')
+                  "
+                >
+                  CurrenPassword is required
+                </p>
+              </div>
+            </div>
+
+            <div class="mb-2">
+              <label for="password">password :</label>
+              <input
+                type="password"
+                id="password"
+                class="form-control"
+                formControlName="password"
+              />
+              <div
+                class="text-danger"
+                *ngIf="
+                  updatePasswordForm.get('password')?.errors &&
+                  updatePasswordForm.get('password')?.touched
+                "
+              >
+                <p
+                  *ngIf="
+                    updatePasswordForm.get('password')?.getError('required')
+                  "
+                >
+                  password is required
+                </p>
+                <p
+                  *ngIf="
+                    updatePasswordForm.get('password')?.getError('pattern')
+                  "
+                >
+                  password must start with upperCase then from 6 to 10
+                </p>
+              </div>
+            </div>
+            <div class="mb-2">
+              <label for="rePassword">rePassword :</label>
+              <input
+                type="password"
+                id="rePassword"
+                class="form-control"
+                formControlName="rePassword"
+              />
+              <div
+                class="text-danger"
+                *ngIf="
+                  updatePasswordForm.get('rePassword')?.errors &&
+                  updatePasswordForm.get('rePassword')?.touched
+                "
+              >
+                <p
+                  *ngIf="
+                    updatePasswordForm.get('rePassword')?.getError('required')
+                  "
+                >
+                  rePassword is required
+                </p>
+                <p
+                  *ngIf="
+                    updatePasswordForm.get('rePassword')?.getError('mismatch')
+                  "
+                >
+                  Password confirmation is incorrect
+                </p>
+              </div>
+            </div>
+
+            <button
+              class="btn-main mx-auto d-block my-3"
+              [disabled]="!updatePasswordForm.valid"
+            >
+              <i class="fas fa-spinner fa-spin" *ngIf="isLoading"></i> Update
+              password
+            </button>
+
+            <p class="text-danger" *ngIf="passMsgErr">{{ passMsgErr }}</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,20 @@
+<section class="w-75 mx-auto my-3 bg-main-light p-3 rounded">
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 class="py-2">Your order list</h1>
+        <button class="btn btn-outline-success my-2" routerLink="/home">Back to home <i class="fa-solid fa-angle-right px-2"></i></button>    
+    </div>
+    
+    <div class="row border-bottom pb-2" *ngFor="let item of userOrderList.cartItems">
+        <div class="col-md-2">
+            <img [src]="item.product.imageCover" alt="..." class="w-100">
+        </div>
+        <div class="col-md-10 d-flex justify-content-between align-items-center">
+            <div>
+                <h4>{{item.product.title}}</h4>
+                <p class="text-main m-0"> price: {{item.price}}</p>
+                <span>count :{{item.count}}</span>
+            </div>
+        </div>
+    </div>
+    
+    </section>

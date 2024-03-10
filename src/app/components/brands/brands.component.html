@@ -1,0 +1,25 @@
+<!--Categories-->
+<section class="my-4" *ngIf="!showProduct">
+    <h2 class="text-center my-4 fw-bold">All Brands</h2>
+    <div class="row g-4">
+      <div class="col-md-3" *ngFor="let brand of brandsData">
+        <div class="card product  cursor-pointer" (click)="showProductData(brand._id)">
+            <div class="card-img">
+                <img [src]="brand.image" class="w-100" height="300" [alt]="brand.name">
+            </div>
+            <div class="card-body">
+              <h3 class="text-main text-center">{{brand.name}}</h3>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+
+      <!-- products-->
+<section class="my-4" *ngIf="showProduct">
+  <div class="position-relative">
+  <h2 class="text-center my-4 fw-bold">Products</h2>
+      <span class="position-absolute start-0 top-0 cursor-pointer" (click)="showProduct = false"><i class="fa-solid fa-chevron-left px-2"></i> Back to brands </span>
+  </div>
+  <app-product-card [filterProduct]="allProductData"></app-product-card>
+</section>

@@ -1,0 +1,63 @@
+<section class="bg-main-light my-3 p-4 rounded-3 shadow w-50 mx-auto">
+  <form [formGroup]="checkout" (ngSubmit)="Payment()">
+    <div class="my-2">
+      <label for="details">Details</label>
+      <textarea
+        id="details"
+        class="form-control"
+        formControlName="details"
+      ></textarea>
+      <div
+        class="text-danger"
+        *ngIf="
+          checkout.get('details')?.errors && checkout.get('details')?.touched
+        "
+      >
+        <p *ngIf="checkout.get('details')?.getError('required')">
+          Details is required
+        </p>
+      </div>
+    </div>
+
+    <div class="my-2">
+      <label for="phone">Phone</label>
+      <input
+        type="tel"
+        id="phone"
+        class="form-control"
+        formControlName="phone"
+      />
+      <div
+        class="text-danger"
+        *ngIf="checkout.get('phone')?.errors && checkout.get('phone')?.touched"
+      >
+        <p *ngIf="checkout.get('phone')?.getError('required')">
+          Phone is required
+        </p>
+        <p *ngIf="checkout.get('phone')?.getError('pattern')">
+          accept only egypt phone numbers
+        </p>
+      </div>
+    </div>
+
+    <div class="my-2">
+      <label for="city">City</label>
+      <input
+        type="text"
+        id="city"
+        class="form-control"
+        formControlName="city"
+      />
+      <div
+        class="text-danger"
+        *ngIf="checkout.get('city')?.errors && checkout.get('city')?.touched"
+      >
+        <p *ngIf="checkout.get('city')?.getError('required')">
+          City is required
+        </p>
+      </div>
+    </div>
+
+    <button class="btn-main my-2" [disabled]="!checkout.valid">checkout</button>
+  </form>
+</section>

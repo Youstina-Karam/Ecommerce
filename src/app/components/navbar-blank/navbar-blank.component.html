@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" routerLink="home"><img src="../../../assets/images/freshcart-logo.svg" alt="logo"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link text-capitalize" routerLink="home" routerLinkActive="active-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-capitalize" routerLink="products" routerLinkActive="active-link">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-capitalize" routerLink="categories" routerLinkActive="active-link">categories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-capitalize" routerLink="brands" routerLinkActive="active-link">brands</a>
+          </li>
+          
+        </ul>
+
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link text-capitalize position-relative" routerLink="wishList">
+              <i class="fa-regular fa-heart fs-4"></i>
+              <span class="badge position-absolute top-0 end-0 bg-danger rounded-circle">{{wishListNum}}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-capitalize position-relative" routerLink="cart">
+              <i class="fa-solid fa-cart-shopping text-main fs-4"></i>
+              <span class="badge position-absolute top-0 end-0 bg-danger rounded-circle">{{cartNum}}</span>
+            </a>
+          </li>
+            <li class="nav-item">
+              <a class="nav-link"><i class="fab fa-instagram"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"><i class="fab fa-facebook"></i></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link"><i class="fab fa-tiktok"></i></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link"><i class="fab fa-twitter"></i></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link"><i class="fab fa-linkedin-in"></i></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link"><i class="fab fa-youtube"></i></a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa-regular fa-user"></i> {{username}}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" routerLink="/profile" routerLinkActive="active-link">My profile</a></li>
+                  <li><span class="dropdown-item cursor-pointer" (click)="logout()">Sign out</span></li>
+                </ul>
+              </li>
+          </ul>
+      </div>
+    </div>
+  </nav>
